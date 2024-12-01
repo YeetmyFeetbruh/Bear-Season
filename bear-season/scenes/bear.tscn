@@ -1,7 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjibdk6nhhmjo"]
+[gd_scene load_steps=13 format=3 uid="uid://cjibdk6nhhmjo"]
 
 [ext_resource type="Script" path="res://scripts/bear.gd" id="1_y3fd8"]
 [ext_resource type="PackedScene" uid="uid://d0mrrv4jya554" path="res://models/bear/scene.gltf" id="2_ulb87"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_edt46"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16kug"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2rwh8"]
 points = PackedVector3Array(-0.267808, -0.166766, 0.74636, -0.373767, 0.541352, 0.61819, -0.0813666, 0.43452, 0.8653, -0.525367, 0.570183, 0.828373, -0.303367, -0.0954571, 0.955651, -0.315666, -0.107977, 0.569389, -0.414367, -0.0956163, 0.877627, -0.155381, -0.120261, 0.643408, -0.106053, 0.48381, 1.06259, -0.406383, -0.107791, 0.65848, -0.463652, 0.570183, 0.631081, -0.222084, -0.124139, 0.911016, -0.256589, 0.504882, 0.677624, -0.340352, 0.582467, 1.12423, -0.155381, 0.557822, 1.08725, -0.0813666, 0.459165, 1.01328, -0.217053, -0.0833324, 0.594099, -0.513024, 0.582467, 0.717428, -0.413669, 0.157467, 0.952258, -0.106053, 0.446804, 0.816046, -0.350695, -0.16599, 0.817543, -0.175341, -0.1249, 0.783215, -0.291067, 0.607267, 1.12423, -0.232989, 0.564499, 1.12278, -0.362788, -0.156202, 0.638874, -0.416423, 0.551863, 1.02263, -0.360317, -0.118074, 0.921371, -0.256047, -0.154064, 0.900274, -0.247139, -0.0573952, 0.954195, -0.315666, 0.582467, 1.13656, -0.40741, -0.122571, 0.679651, -0.278724, -0.107977, 0.569389)
@@ -83,6 +90,18 @@ _data = {
 script = ExtResource("1_y3fd8")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("2_ulb87")]
+
+[node name="redeye" type="MeshInstance3D" parent="Sketchfab_Scene"]
+transform = Transform3D(0.035561, 0, 0, 0, 0.035561, 0, 0, 0, 0.035561, 0.0902203, 1.27731, -1.14213)
+mesh = SubResource("SphereMesh_edt46")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_16kug")
+
+[node name="redeye2" type="MeshInstance3D" parent="Sketchfab_Scene"]
+transform = Transform3D(0.035561, 0, 0, 0, 0.035561, 0, 0, 0, 0.035561, -0.0816191, 1.27731, -1.14213)
+mesh = SubResource("SphereMesh_edt46")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_16kug")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151059, 0.0239463)

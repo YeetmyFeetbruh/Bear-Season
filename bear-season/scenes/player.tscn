@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dt7ncp20c0wu8"]
+[gd_scene load_steps=25 format=3 uid="uid://dt7ncp20c0wu8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_nbtjk"]
 [ext_resource type="PackedScene" uid="uid://yn36mi23b56d" path="res://models/shotgun/scene.gltf" id="2_8lf6c"]
@@ -7,6 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://wmpjrdfktxqe" path="res://audio/kill.wav" id="5_mljan"]
 [ext_resource type="AudioStream" uid="uid://sgiygsjuf0xe" path="res://audio/reload.wav" id="6_uab51"]
 [ext_resource type="AudioStream" uid="uid://brwyo14f5xx17" path="res://audio/click.wav" id="7_hyga6"]
+[ext_resource type="AudioStream" uid="uid://bq60yxsuk66rg" path="res://audio/footsteps/step1.wav" id="8_3dr02"]
+[ext_resource type="AudioStream" uid="uid://eff0p4nb456q" path="res://audio/footsteps/step2.wav" id="9_p742x"]
+[ext_resource type="AudioStream" uid="uid://bphh7keddthkq" path="res://audio/footsteps/step3.wav" id="10_5hniv"]
+[ext_resource type="AudioStream" uid="uid://x2jy74laik5o" path="res://audio/footsteps/step4.wav" id="11_7y8aj"]
+[ext_resource type="AudioStream" uid="uid://c44fqplfogxc3" path="res://audio/footsteps/step5.wav" id="12_d8ogm"]
+[ext_resource type="AudioStream" uid="uid://fw2mkcyb0myc" path="res://audio/footsteps/step6.wav" id="13_a241x"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a3kv4"]
 
@@ -146,6 +152,13 @@ initial_velocity_max = 20.0
 size = Vector2(0.03, 0.05)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6inuk"]
+streams_count = 6
+stream_0/stream = ExtResource("8_3dr02")
+stream_1/stream = ExtResource("9_p742x")
+stream_2/stream = ExtResource("10_5hniv")
+stream_3/stream = ExtResource("11_7y8aj")
+stream_4/stream = ExtResource("12_d8ogm")
+stream_5/stream = ExtResource("13_a241x")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_nbtjk")
@@ -243,18 +256,24 @@ draw_pass_1 = SubResource("QuadMesh_y7cjh")
 
 [node name="fire" type="AudioStreamPlayer2D" parent="Twist/Pitch/Gun"]
 stream = ExtResource("4_rdwwl")
+volume_db = 10.0
 
 [node name="kill" type="AudioStreamPlayer2D" parent="Twist/Pitch/Gun"]
 stream = ExtResource("5_mljan")
+volume_db = 10.0
+panning_strength = 0.0
 
 [node name="reload" type="AudioStreamPlayer2D" parent="Twist/Pitch/Gun"]
 stream = ExtResource("6_uab51")
+volume_db = 5.0
 
 [node name="click" type="AudioStreamPlayer2D" parent="Twist/Pitch/Gun"]
 stream = ExtResource("7_hyga6")
+volume_db = 5.0
 
 [node name="Step_sfx" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_6inuk")
+volume_db = -30.0
 
 [node name="GunOverlay" type="CanvasLayer" parent="."]
 

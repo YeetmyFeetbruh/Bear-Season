@@ -48,7 +48,6 @@ func _physics_process(delta):
 		velocity.z = 0.0
 	
 	if velocity != Vector3(0, 0, 0) && is_on_floor() && step_delay == false:
-		print('step')
 		step_sfx.play()
 		step_delay = true
 		await get_tree().create_timer(.44).timeout

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://caif5mpofx80n"]
+[gd_scene load_steps=17 format=3 uid="uid://caif5mpofx80n"]
 
 [ext_resource type="Script" path="res://scripts/MasterScipt.gd" id="1_jvv1h"]
 [ext_resource type="PackedScene" uid="uid://dt7ncp20c0wu8" path="res://scenes/player.tscn" id="2_ujij5"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://h5gp58drtrmo" path="res://models/light/scene.gltf" id="4_3r4np"]
 [ext_resource type="PackedScene" uid="uid://xt2ae77ubu1k" path="res://models/tent/scene.gltf" id="5_wskop"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="6_uicuu"]
+[ext_resource type="Theme" uid="uid://b13wgdb7f6qkc" path="res://recources/hotbar.tres" id="7_a42rb"]
 [ext_resource type="PackedScene" uid="uid://bspgto8ruj6hb" path="res://models/groundcollision/groundcollision.glb" id="7_c7crp"]
-[ext_resource type="PackedScene" uid="uid://cjibdk6nhhmjo" path="res://scenes/bear.tscn" id="8_ox28y"]
+[ext_resource type="Texture2D" uid="uid://cyi8ggvvidvf4" path="res://sprites/flashlight2.png" id="8_2tvfd"]
+[ext_resource type="Texture2D" uid="uid://bnnyi6daosxa" path="res://sprites/shotgun2.png" id="9_3clt4"]
 [ext_resource type="AudioStream" uid="uid://c2crir5bp0ao5" path="res://audio/night-ambience-17064.mp3" id="9_srfgm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0rf8b"]
@@ -111,6 +113,46 @@ grow_horizontal = 0
 text = "AMMO: 10"
 label_settings = SubResource("LabelSettings_1meb1")
 
+[node name="hotbar" type="GridContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -303.0
+offset_top = -131.0
+offset_right = 753.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.605979, 0.605979)
+columns = 5
+
+[node name="FlashlightButton" type="Button" parent="UI/hotbar"]
+layout_mode = 2
+theme = ExtResource("7_a42rb")
+icon = ExtResource("8_2tvfd")
+
+[node name="GunButton" type="Button" parent="UI/hotbar"]
+layout_mode = 2
+theme = ExtResource("7_a42rb")
+icon = ExtResource("9_3clt4")
+
+[node name="GunButton2" type="Button" parent="UI/hotbar"]
+layout_mode = 2
+theme = ExtResource("7_a42rb")
+icon = ExtResource("9_3clt4")
+
+[node name="GunButton3" type="Button" parent="UI/hotbar"]
+layout_mode = 2
+theme = ExtResource("7_a42rb")
+icon = ExtResource("9_3clt4")
+
+[node name="GunButton4" type="Button" parent="UI/hotbar"]
+layout_mode = 2
+theme = ExtResource("7_a42rb")
+icon = ExtResource("9_3clt4")
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.148794, 0)
 navigation_mesh = SubResource("NavigationMesh_hxewt")
@@ -128,17 +170,12 @@ visible = false
 stream = ExtResource("9_srfgm")
 autoplay = true
 
-[node name="Bear" parent="." instance=ExtResource("8_ox28y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88255, 9.66887, 24.9779)
+[node name="Timers" type="Node" parent="."]
 
-[node name="Bear2" parent="." instance=ExtResource("8_ox28y")]
-transform = Transform3D(0.027154, 0, 0.999631, 0, 1, 0, -0.999631, 0, 0.027154, 28.1006, 6.38795, -2.75696)
+[node name="BearSpawner" type="Timer" parent="Timers"]
+wait_time = 10.0
 
-[node name="Bear3" parent="." instance=ExtResource("8_ox28y")]
-transform = Transform3D(-0.193378, 0, -0.981124, 0, 1, 0, 0.981124, 0, -0.193378, -20.929, 7.11326, -12.0224)
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.71266, 0)
 
-[node name="Bear4" parent="." instance=ExtResource("8_ox28y")]
-transform = Transform3D(-0.869417, 0, 0.494078, 0, 1, 0, -0.494078, 0, -0.869417, 10.9056, 6.38233, -26.9501)
-
-[node name="Bear5" parent="." instance=ExtResource("8_ox28y")]
-transform = Transform3D(0.713544, 0, -0.70061, 0, 1, 0, 0.70061, 0, 0.713544, -17.6687, 8.62446, 18.1007)
+[connection signal="timeout" from="Timers/BearSpawner" to="." method="_on_bear_spawner_timeout"]

@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var camera = $Twist/Pitch/Camera3D
 @onready var step_sfx = $Step_sfx
 @onready var gun_camera = $GunOverlay/SubViewportContainer/SubViewport/GunCamera
+@onready var ui = $"../UI"
 
 const speed = 5.0
 const JUMP_VELOCITY = 4.5
@@ -76,3 +77,17 @@ func _process(delta):
 	gun_camera.global_transform = camera.global_transform
 	var MainEnv = camera.get_environment()
 	gun_camera.set_environment(MainEnv)
+
+func switch_hand():
+	if ui.equipped == 'flashlight':
+		hide_hand()
+		$Twist/Pitch/Flashlight.show()
+	elif ui.equipped == 'gun':
+		hide_hand()
+		$Twist/Pitch/Gun.show()
+	else:
+		hide_hand()
+
+func hide_hand():
+	$Twist/Pitch/Gun.hide()
+	$Twist/Pitch/Flashlight.hide()

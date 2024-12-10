@@ -283,6 +283,7 @@ volume_db = 5.0
 
 [node name="Flashlight" parent="Twist/Pitch" instance=ExtResource("8_o7ukk")]
 transform = Transform3D(-0.00398159, 0.00038315, 1.33799e-05, 0, -0.000139598, 0.00399756, 0.000383383, 0.00397916, 0.000138955, 0.545, -0.394, -0.826)
+visible = false
 
 [node name="flashlight" type="SpotLight3D" parent="Twist/Pitch/Flashlight"]
 transform = Transform3D(-250, -1.00974e-19, -2.18557e-05, -2.18557e-05, -1.09278e-05, 250, -9.55343e-13, 250, 1.09278e-05, -1.24812, -4.74915, 0.231377)
